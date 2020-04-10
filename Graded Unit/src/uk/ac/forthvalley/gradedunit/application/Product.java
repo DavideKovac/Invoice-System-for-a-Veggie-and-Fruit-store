@@ -9,9 +9,9 @@ private double productPrice;
 private String productProvenance;
 private String productDescription;
 private boolean productType;
-private PreparedStatement insertProduct=con.preparedStatement("INSERT INTO Products VALUES(?,?,?,?,?,?,?,?");
-private PreparedStatement getProduct=con.preparedStatement("UPDATE Products SET quantity=quantity-? WHERE product_name=?");
-private PreparedStatement removeProduct=con.preparedStatement("DELETE FROM Products WHERE product_name=?");
+private PreparedStatement insertProduct=con.preparedStatement("INSERT INTO products VALUES(?,?,?,?,?,?,?,?");
+private PreparedStatement getProduct=con.preparedStatement("UPDATE products SET quantity=quantity-? WHERE product_name=?");
+private PreparedStatement removeProduct=con.preparedStatement("DELETE FROM products WHERE product_name=?");
 public Product()
 {
 	

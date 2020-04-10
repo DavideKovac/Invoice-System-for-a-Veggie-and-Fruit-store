@@ -7,8 +7,8 @@ public class Client {
  private String companyName;
  private String companyEmail;
  private String clientPhoneNumber;
- private PreparedStatement insertClient=con.preparedStatement("INSERT INTO Clients VALUES(?,?,?,?) ");
- private PreparedStatement getClientInfo=con.preparedStatement("SELECT client_id,company_name,e-mail,phone_number FROM Clients WHERE client_id=?");
+ private PreparedStatement insertClient=con.preparedStatement("INSERT INTO clients VALUES(?,?,?,?) ");
+ private PreparedStatement getClientInfo=con.preparedStatement("SELECT client_id,company_name,e-mail,phone_number FROM clients WHERE client_id=?");
  
  public Client()
  {
