@@ -11,7 +11,6 @@ private String productDescription;
 private boolean productType;
 private PreparedStatement insertNewProduct=con.preparedStatement("IF EXIST(SELECT * FROM product WHERE product_name=?)BEGIN UPDATE products SET quantity=quantity+? WHERE product_name=? END ELSE BEGIN INSERT INTO products VALUES(?,?,?,?,?,?,?) END");
 private PreparedStatement getProduct=con.preparedStatement("UPDATE products SET quantity=quantity-? WHERE product_name=?");
-private PreparedStatement removeProduct=con.preparedStatement("DELETE FROM products WHERE product_name=?");
 public Product()
 {
 	
@@ -37,11 +36,6 @@ public void getProduct(String productName,int productQuantity)
 	
 	getProduct.setInt(1,productQuantity);
 	getProduct.setString(2, productName);
-}
-
-public void removeProduct(String productName)
-{
-	getProduct.setString(1, productName);
 }
 }
 
