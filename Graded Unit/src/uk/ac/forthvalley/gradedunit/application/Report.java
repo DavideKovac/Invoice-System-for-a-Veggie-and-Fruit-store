@@ -1,17 +1,24 @@
 package uk.ac.forthvalley.gradedunit.application;
+import java.sql.Connection;
 import java.sql.PreparedStatement;
-public class Report {
+import java.sql.SQLException;
 
+public class Report {
+private Connection con=null;
+private String getWeeklyReportString="SELECT * FROM orders WHERE ordersdate=sysdate-7";
+private PreparedStatement getWeeklyReport=null;
+private String getMonthlyReportString="SELECT * FROM orders WHERE ordersdate=sysdate-30";
+private PreparedStatement getMonthlyReport=null;
 public Report()
 {
 	
 }
-public void getWeeklyReprot()
+public void getWeeklyReprot() throws SQLException
 {
-	PreparedStatement getWeeklyReport=con.preparedStatement("SELECT * FROM orders WHERE ordersdate=sysdate-7");
+	getWeeklyReport=con.prepareStatement(getWeeklyReportString);
 }
-public void gerMonthlyReport()
+public void gerMonthlyReport() throws SQLException
 {
-	PreparedStatement getMonthlyReport=con.preparedStatement("SELECT * FROM orders WHERE ordersdate=sysdate-30");
+  getMonthlyReport=con.prepareStatement(getMonthlyReportString);
 }
 }
