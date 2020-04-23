@@ -13,7 +13,7 @@ public Report()
 {
 	
 }
-public void getWeeklyReprot() throws SQLException
+public void getWeeklyReport() throws SQLException
 {
 	getWeeklyReport=con.prepareStatement(getWeeklyReportString);
 }
