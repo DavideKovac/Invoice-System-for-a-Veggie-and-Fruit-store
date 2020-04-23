@@ -17,7 +17,7 @@ public void getWeeklyReport() throws SQLException
 {
 	getWeeklyReport=con.prepareStatement(getWeeklyReportString);
 }
-public void gerMonthlyReport() throws SQLException
+public void getMonthlyReport() throws SQLException
 {
   getMonthlyReport=con.prepareStatement(getMonthlyReportString);
 }
