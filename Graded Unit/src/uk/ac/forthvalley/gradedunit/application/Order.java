@@ -7,8 +7,6 @@ public class Order {
 Connection con=null;
 private int orderID=1;
 private Product product=new Product();
-private String insertNewOrderString=" ";
-private PreparedStatement insertNewOrder=null;
 private String getOrderString="SELECT * FROM orders WHERE order_id=?";
 private PreparedStatement getOrder=null;
 private String addToOrderedItemsString="INSERT INTO ordered products VALUES(?,?)";
