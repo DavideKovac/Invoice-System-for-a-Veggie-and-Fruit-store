@@ -5,7 +5,6 @@ import java.sql.SQLException;
 
 public class Order {
 Connection con=null;
-private int orderID=1;
 private Product product=new Product();
 private String getOrderString="SELECT * FROM orders WHERE order_id=?";
 private PreparedStatement getOrder=null;
@@ -18,7 +17,7 @@ public Order()
 {
 	
 }
-public void newOrderProduct(String productName,int productQuantity) throws SQLException
+public void newOrderProduct(String productName,int productQuantity,int orderID) throws SQLException
 {
  boolean isAvailable=product.getProductAvailability(productName);
  addToOrderedItems=con.prepareStatement(addToOrderedItemsString);
