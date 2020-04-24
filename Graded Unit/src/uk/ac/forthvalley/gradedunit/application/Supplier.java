@@ -7,7 +7,7 @@ import java.sql.SQLException;
 public class Supplier {
 Connection con=null;
 private int supplierId=1;
-private String insertSupplierString="INSERT INTO suppliers VALUE(?,?,?,?)";
+private String insertSupplierString="INSERT INTO suppliers VALUES(?,?,?,?)";
 private PreparedStatement insertSupplier=null;
 private String getSupplierInfoString="SELECT supplier_id,company_name,email,phone_number FROM suppliers WHERE supplier_id=?";
 private PreparedStatement getSupplierInfo=null;
