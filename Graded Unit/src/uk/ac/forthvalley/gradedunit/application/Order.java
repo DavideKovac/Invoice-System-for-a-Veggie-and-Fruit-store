@@ -11,9 +11,9 @@ private String insertNewOrderString=" ";
 private PreparedStatement insertNewOrder=null;
 private String getOrderString="SELECT * FROM orders WHERE order_id=?";
 private PreparedStatement getOrder=null;
-private String addToOrderedItemsString="INSERT productName,productID INTO ordered products";
+private String addToOrderedItemsString="INSERT INTO ordered products VALUES(?,?)";
 private PreparedStatement addToOrderedItems=null;
-private String addNewOrderString="INSERT orderID,clientID FROM orders";
+private String addNewOrderString="INSERT INTO orders VALUES(?,?,sysdata)";
 private PreparedStatement addNewOrder=null;
 
 public Order()
