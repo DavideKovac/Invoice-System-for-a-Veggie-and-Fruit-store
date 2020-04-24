@@ -15,6 +15,7 @@ public class DatabaseManager {
     Supplier supplier=new Supplier();
     Product product=new Product();
     Report report=new Report();
+    Order order=new Order();
     public DatabaseManager()
     {}
     
@@ -92,5 +93,32 @@ public class DatabaseManager {
 			e.printStackTrace(); 
 		 }
 	 }
-
+    
+	 public void addOrder(String productName,int productQuantity,int clientID){
+		 int orderID=1;
+		 boolean isOrdering=true;
+		 try { 
+			 con=DriverManager.getConnection(url, user, password);
+             order.addOrder(orderID, clientID);
+		 do {
+		 
+			order.newOrderProduct(productName, productQuantity,orderID);
+				 
+		 }while(!isOrdering);
+		 orderID++;
+		}catch(SQLException e) {
+				 e.printStackTrace();	 
+		}
+		 
+	 }
+	 
+	 public void getOrder(int orderID)
+	 {
+		 try {
+			 con=DriverManager.getConnection(url, user, password);
+			 order.getOrder(orderID);
+		 }catch(SQLException e) {
+			e.printStackTrace(); 
+		 }
+	 }
 }
