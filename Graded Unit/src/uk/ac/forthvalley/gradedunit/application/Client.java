@@ -30,15 +30,19 @@ public class Client {
 	}
 	 
  }
-public void getClientInfo(int clientID) throws SQLException
+public String getClientInfo(int clientID) throws SQLException
 {
+	String client="";
   try {
 	getClientInfo=con.prepareStatement(getClientInfoString);
 	getClientInfo.setInt(1,clientID);
+	client=getClientInfo.toString();
+	return client;
 } catch (SQLException e) {
 	System.out.println("Error retriving client info");
 	e.getMessage();
 }	
+  return client;
 }
 
 }
