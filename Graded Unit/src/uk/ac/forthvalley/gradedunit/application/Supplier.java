@@ -30,15 +30,18 @@ public void insertNewSupplier(String companyName,String supplierEmail,String sup
 		e.getMessage();
 	}
 }
-public void getSupplierInfo(int supplierID) throws SQLException {
+public String getSupplierInfo(int supplierID) throws SQLException {
+	String supplier=" ";
 	try {
 	getSupplierInfo=con.prepareStatement(getSupplierInfoString);
 	getSupplierInfo.setInt(1,supplierID);	
+	supplier=getSupplierInfo.toString();
 	}
 	catch(SQLException e)
 	{
 		e.getMessage();
 	}
+	return supplier;
 }
 
 }
