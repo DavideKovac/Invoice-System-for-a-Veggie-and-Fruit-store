@@ -40,10 +40,12 @@ public void addOrder(int orderID,int clientID) throws SQLException
     addNewOrder.setInt(2, clientID);
 
 }
-public void getOrder(int orderID) throws SQLException
-{
+public String getOrder(int orderID) throws SQLException
+{ 
+	String order="";
 	getOrder=con.prepareStatement(getOrderString);
 	getOrder.setInt(1,orderID);
-	 
+	order=getOrder.toString();
+	return order;
 }
 }
