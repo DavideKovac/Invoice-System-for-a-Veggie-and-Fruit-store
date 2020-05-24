@@ -6,15 +6,28 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-import javax.swing.JLabel;
-import java.awt.GridBagLayout;
-import java.awt.GridBagConstraints;
-import javax.swing.JRadioButton;
-import java.awt.Insets;
 
+import uk.ac.forthvalley.gradedunit.dataaccess.DatabaseManager;
+
+import javax.swing.JLabel;
+import javax.swing.JRadioButton;
+import javax.swing.JTextField;
+import javax.swing.ButtonGroup;
+import javax.swing.JButton;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+/**
+ * The Class that deal with the GUI to add new client or supplier
+ * @author Davide Kovac 
+ *
+ */
 public class NewUserUI extends JFrame {
 
 	private JPanel contentPane;
+	private JTextField textField;
+	private JTextField textField_1;
+	private JTextField textField_2;
+	private DatabaseManager db=new DatabaseManager();
 
 	/**
 	 * Launch the application.
@@ -51,33 +64,82 @@ public class NewUserUI extends JFrame {
 		
 		JPanel panel_1 = new JPanel();
 		contentPane.add(panel_1, BorderLayout.CENTER);
-		GridBagLayout gbl_panel_1 = new GridBagLayout();
-		gbl_panel_1.columnWidths = new int[]{0, 0, 0, 0, 0};
-		gbl_panel_1.rowHeights = new int[]{0, 0, 0, 0, 0};
-		gbl_panel_1.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
-		gbl_panel_1.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
-		panel_1.setLayout(gbl_panel_1);
+		panel_1.setLayout(null);
 		
-		JRadioButton rdbtnClient = new JRadioButton("Client");
-		GridBagConstraints gbc_rdbtnClient = new GridBagConstraints();
-		gbc_rdbtnClient.insets = new Insets(0, 0, 5, 0);
-		gbc_rdbtnClient.gridx = 3;
-		gbc_rdbtnClient.gridy = 1;
-		panel_1.add(rdbtnClient, gbc_rdbtnClient);
-		
-		JLabel lblNewLabel = new JLabel("Type");
-		GridBagConstraints gbc_lblNewLabel = new GridBagConstraints();
-		gbc_lblNewLabel.insets = new Insets(0, 0, 5, 5);
-		gbc_lblNewLabel.gridx = 1;
-		gbc_lblNewLabel.gridy = 2;
-		panel_1.add(lblNewLabel, gbc_lblNewLabel);
+		JLabel lblType = new JLabel("Type");
+		lblType.setBounds(10, 31, 34, 13);
+		panel_1.add(lblType);
 		
 		JRadioButton rdbtnSupplier = new JRadioButton("Supplier");
-		GridBagConstraints gbc_rdbtnSupplier = new GridBagConstraints();
-		gbc_rdbtnSupplier.insets = new Insets(0, 0, 5, 0);
-		gbc_rdbtnSupplier.gridx = 3;
-		gbc_rdbtnSupplier.gridy = 2;
-		panel_1.add(rdbtnSupplier, gbc_rdbtnSupplier);
-	}
-
+		rdbtnSupplier.setBounds(58, 16, 103, 21);
+		panel_1.add(rdbtnSupplier);
+		
+		
+		JRadioButton rdbtnClient = new JRadioButton("Client");
+		rdbtnClient.setBounds(58, 45, 103, 21);
+		panel_1.add(rdbtnClient);
+		
+		ButtonGroup editableGroup = new ButtonGroup();
+	    editableGroup.add(rdbtnClient);
+	    editableGroup.add(rdbtnSupplier);
+		
+		JLabel lblEmail = new JLabel("E-mail");
+		lblEmail.setBounds(265, 31, 45, 13);
+		panel_1.add(lblEmail);
+		
+		textField = new JTextField();
+		textField.setBounds(320, 28, 96, 19);
+		panel_1.add(textField);
+		textField.setColumns(10);
+		
+		JLabel lblCompanyName = new JLabel("Company name");
+		lblCompanyName.setBounds(10, 123, 77, 13);
+		panel_1.add(lblCompanyName);
+		
+		textField_1 = new JTextField();
+		textField_1.setBounds(92, 120, 96, 19);
+		panel_1.add(textField_1);
+		textField_1.setColumns(10);
+		
+		JLabel lblPhoneNumber = new JLabel("Phone Number");
+		lblPhoneNumber.setBounds(253, 123, 83, 13);
+		panel_1.add(lblPhoneNumber);
+		
+		textField_2 = new JTextField();
+		textField_2.setBounds(332, 120, 84, 19);
+		panel_1.add(textField_2);
+		textField_2.setColumns(10);
+		
+		JPanel panel_2 = new JPanel();
+		contentPane.add(panel_2, BorderLayout.SOUTH);
+		
+		JButton btnConfirm = new JButton("Confirm");
+		btnConfirm.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				addingStockUI addingStock=new addingStockUI();
+				addingStock.setVisible(true);
+				if(rdbtnClient.isSelected()) {
+				String companyName=textField_1.getText();
+				String companyEmail=textField.getText();
+				String clientPhoneNumber=textField_2.getText();
+				db.insertClient(companyName, companyEmail, clientPhoneNumber);
+				}
+				else if(rdbtnSupplier.isSelected())
+				{
+					String companyName=textField_1.getText();
+					String companyEmail=textField.getText();
+					String clientPhoneNumber=textField_2.getText();
+					db.insertNewSupplier(companyName, companyEmail, clientPhoneNumber);
+					
+			
+			}
+				editableGroup.clearSelection();
+				textField.setText("");
+				textField_1.setText("");
+				textField_2.setText("");
+			}
+		});
+		panel_2.add(btnConfirm);
+	}	
 }
