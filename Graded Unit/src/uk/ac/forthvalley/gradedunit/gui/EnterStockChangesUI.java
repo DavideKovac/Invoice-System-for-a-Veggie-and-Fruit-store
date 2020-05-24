@@ -2,18 +2,20 @@ package uk.ac.forthvalley.gradedunit.gui;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
-import java.awt.GridBagLayout;
 import javax.swing.JButton;
-import java.awt.GridBagConstraints;
-import java.awt.Insets;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+/**
+ * The Class that deal with the GUI to select if is a new or an old user
+ * @author Davide Kovac 
+ *
+ */
 public class EnterStockChangesUI extends JFrame {
 
 	private JPanel contentPane;
@@ -48,34 +50,33 @@ public class EnterStockChangesUI extends JFrame {
 		JPanel panel = new JPanel();
 		contentPane.add(panel, BorderLayout.NORTH);
 		
-		JLabel lblEnterStockChanges = new JLabel("enter Stock changes");
+		JLabel lblEnterStockChanges = new JLabel("Enter Stock changes");
 		panel.add(lblEnterStockChanges);
 		
 		JPanel panel_1 = new JPanel();
 		contentPane.add(panel_1, BorderLayout.CENTER);
-		GridBagLayout gbl_panel_1 = new GridBagLayout();
-		gbl_panel_1.columnWidths = new int[]{0, 0, 0, 0, 0, 0, 0, 0};
-		gbl_panel_1.rowHeights = new int[]{0, 0, 0, 0, 0, 0};
-		gbl_panel_1.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
-		gbl_panel_1.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
-		panel_1.setLayout(gbl_panel_1);
 		
 		JButton btnNewButton = new JButton("New user");
+		btnNewButton.setBounds(166, 30, 101, 21);
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				NewUserUI userUI=new NewUserUI();
+				userUI.setVisible(true);
 			}
 		});
-		GridBagConstraints gbc_btnNewButton = new GridBagConstraints();
-		gbc_btnNewButton.insets = new Insets(0, 0, 5, 0);
-		gbc_btnNewButton.gridx = 6;
-		gbc_btnNewButton.gridy = 1;
-		panel_1.add(btnNewButton, gbc_btnNewButton);
+		panel_1.setLayout(null);
+		panel_1.add(btnNewButton);
 		
 		JButton btnNewButton_1 = new JButton("Old User");
-		GridBagConstraints gbc_btnNewButton_1 = new GridBagConstraints();
-		gbc_btnNewButton_1.gridx = 6;
-		gbc_btnNewButton_1.gridy = 4;
-		panel_1.add(btnNewButton_1, gbc_btnNewButton_1);
+		btnNewButton_1.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				addingStockUI addingStockUI= new addingStockUI();
+				addingStockUI.setVisible(true);
+			}
+		});
+		btnNewButton_1.setBounds(166, 116, 101, 21);
+		panel_1.add(btnNewButton_1);
 	}
 
 }
