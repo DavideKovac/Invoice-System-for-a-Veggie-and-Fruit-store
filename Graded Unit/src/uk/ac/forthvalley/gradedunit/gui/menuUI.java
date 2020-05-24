@@ -1,27 +1,22 @@
 package uk.ac.forthvalley.gradedunit.gui;
 
 import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import java.awt.BorderLayout;
 import javax.swing.JLabel;
 import javax.swing.JButton;
-import javax.swing.SwingConstants;
-import java.awt.GridLayout;
-import java.awt.GridBagLayout;
-import java.awt.GridBagConstraints;
-import java.awt.Insets;
-import javax.swing.AbstractAction;
-import java.awt.event.ActionEvent;
-import javax.swing.Action;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-
+/**
+ * The Class that deal with Menu choice
+ * @author Davide Kovac 
+ *
+ */
 public class menuUI {
 
 	private JFrame frame;
-	private final Action action = new SwingAction();
+	
    
 	/**
 	 * Launch the application.
@@ -62,14 +57,9 @@ public class menuUI {
 		
 		JPanel panel_1 = new JPanel();
 		frame.getContentPane().add(panel_1, BorderLayout.CENTER);
-		GridBagLayout gbl_panel_1 = new GridBagLayout();
-		gbl_panel_1.columnWidths = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-		gbl_panel_1.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0};
-		gbl_panel_1.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
-		gbl_panel_1.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
-		panel_1.setLayout(gbl_panel_1);
 		
 		JButton btnUpdateStock = new JButton("Update Stock");
+		btnUpdateStock.setBounds(168, 30, 119, 21);
 		btnUpdateStock.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -77,36 +67,31 @@ public class menuUI {
 				enterStock.setVisible(true);;
 			}
 		});
-		GridBagConstraints gbc_btnUpdateStock = new GridBagConstraints();
-		gbc_btnUpdateStock.fill = GridBagConstraints.HORIZONTAL;
-		gbc_btnUpdateStock.insets = new Insets(0, 0, 5, 5);
-		gbc_btnUpdateStock.gridx = 6;
-		gbc_btnUpdateStock.gridy = 1;
-		panel_1.add(btnUpdateStock, gbc_btnUpdateStock);
+		panel_1.setLayout(null);
+		panel_1.add(btnUpdateStock);
 		
 		JButton btnNewButton = new JButton("Get Info");
-		GridBagConstraints gbc_btnNewButton = new GridBagConstraints();
-		gbc_btnNewButton.fill = GridBagConstraints.BOTH;
-		gbc_btnNewButton.insets = new Insets(0, 0, 5, 5);
-		gbc_btnNewButton.gridx = 6;
-		gbc_btnNewButton.gridy = 3;
-		panel_1.add(btnNewButton, gbc_btnNewButton);
+		btnNewButton.setBounds(168, 86, 119, 21);
+		btnNewButton.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				getInfoUI getInfoui=new getInfoUI();
+				getInfoui.setVisible(true);
+			}
+		});
+		panel_1.add(btnNewButton);
 		
 		JButton btnNewButton_1 = new JButton("Create Report");
-		GridBagConstraints gbc_btnNewButton_1 = new GridBagConstraints();
-		gbc_btnNewButton_1.fill = GridBagConstraints.BOTH;
-		gbc_btnNewButton_1.insets = new Insets(0, 0, 0, 5);
-		gbc_btnNewButton_1.gridx = 6;
-		gbc_btnNewButton_1.gridy = 5;
-		panel_1.add(btnNewButton_1, gbc_btnNewButton_1);
-	}
-
-	private class SwingAction extends AbstractAction {
-		public SwingAction() {
-			putValue(NAME, "SwingAction");
-			putValue(SHORT_DESCRIPTION, "Some short description");
-		}
-		public void actionPerformed(ActionEvent e) {
-		}
+		btnNewButton_1.setBounds(168, 142, 119, 21);
+		btnNewButton_1.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				CreateReportUI createReportUI=new CreateReportUI();
+				createReportUI.setVisible(true);
+				
+			}
+		});
+		panel_1.add(btnNewButton_1);
 	}
 }
+	
